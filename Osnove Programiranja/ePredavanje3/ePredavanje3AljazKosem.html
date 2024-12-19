@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aljaz Kosem</title>
+    <style>
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            border-radius: 5px 5px 0 0;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            border-radius: 5px 5px 0 0;
+
+        }
+        th {
+            background-color: #ffffff;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>JDM Avtomobili - Seznam in Skupne Cene</h1>
+    <div id="tabela-avti"></div>
+
+    <script>
+        var request = new XMLHttpRequest();
+        request.open("GET", "avtomobili.xml", false);
+        request.send();
+        var xml = request.responseXML;
+
+        var v_root_element = xml.getElementsByTagName("element");
+
+        var tabela = [];
+
+        for (var i = 0; i < v_root_element.length; i++) {
+            var root = v_root_element[i];
+            var znamka = root.getElementsByTagName("znamka")[0].childNodes[0].nodeValue;
+            var model = root.getElementsByTagName("model")[0].childNodes[0].nodeValue;
+            var leto = root.getElementsByTagName("leto")[0].childNodes[0].nodeValue;
+            var tip = root.getElementsByTagName("tip")[0].childNodes[0].nodeValue;
+            var cena = root.getElementsByTagName("cena")[0].childNodes[0].nodeValue;
+
+            tabela.push({
+                znamka: znamka,
+                model: model,
+                leto: leto,
+                tip: tip,
+                cena: parseInt(cena)
+            });
+        }
+        var rezultat = {
+            Športni: 0,
+            Limuzina: 0,
+            Hatchback: 0,
+            Skupaj: 0
+        };
+
+        function izracunaj() {
+            for (var k = 0; k < tabela.length; k++) {
+                var tip = tabela[k].tip;
+                var cena = tabela[k].cena;
+
+                rezultat[tip] += cena;
+                rezultat.Skupaj += cena;
+            }
+        }
+
+        function izpisiTabelo() {
+            izracunaj();
+
+            var tabelaHTML = "<table>";
+            tabelaHTML += "<thead><tr><th>Znamka</th><th>Model</th><th>Leto</th><th>Tip</th><th>Cena (€)</th></tr></thead>";
+            tabelaHTML += "<tbody>";
+
+            for (var k = 0; k < tabela.length; k++) {
+                tabelaHTML += `<tr>
+                    <td>${tabela[k].znamka}</td>
+                    <td>${tabela[k].model}</td>
+                    <td>${tabela[k].leto}</td>
+                    <td>${tabela[k].tip}</td>
+                    <td>${tabela[k].cena}</td>
+                </tr>`;
+            }
+            tabelaHTML += `<tr>
+                <td colspan="4" style="text-align:right; font-weight: bold;">Skupaj:</td>
+                <td>${rezultat["Skupaj"]} €</td>
+            </tr>`;
+
+            tabelaHTML += "</tbody></table>";
+
+            document.getElementById("tabela-avti").innerHTML = tabelaHTML;
+        }
+        izpisiTabelo();
+    </script>
+</body>
+</html>

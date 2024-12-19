@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root_element>
+    <element>
+        <znamka>Nissan</znamka>
+        <model>Skyline GT-R</model>
+        <leto>1999</leto>
+        <tip>Športni</tip>
+        <cena>60000</cena>
+    </element>
+    <element>
+        <znamka>Toyota</znamka>
+        <model>Supra MK4</model>
+        <leto>1998</leto>
+        <tip>Športni</tip>
+        <cena>70000</cena>
+    </element>
+    <element>
+        <znamka>Mazda</znamka>
+        <model>RX-7</model>
+        <leto>2001</leto>
+        <tip>Športni</tip>
+        <cena>55000</cena>
+    </element>
+    <element>
+        <znamka>Honda</znamka>
+        <model>Civic Type R</model>
+        <leto>2020</leto>
+        <tip>Hatchback</tip>
+        <cena>40000</cena>
+    </element>
+    <element>
+        <znamka>Subaru</znamka>
+        <model>Impreza WRX</model>
+        <leto>2005</leto>
+        <tip>Športni</tip>
+        <cena>45000</cena>
+    </element>
+    <element>
+        <znamka>Toyota</znamka>
+        <model>Chaser</model>
+        <leto>1997</leto>
+        <tip>Limuzina</tip>
+        <cena>35000</cena>
+    </element>
+</root_element>

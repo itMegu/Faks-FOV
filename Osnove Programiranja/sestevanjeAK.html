@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucenje sestevanja 2.Vaje</title>
+
+</head>
+<body>
+    <script>
+        function preveri() {
+            let rez = document.getElementById("rez");
+            console.log(rez)
+            let a = parseInt(document.getElementById("st1").value);
+            let b = parseInt(document.getElementById("st2").value);
+            let skupaj = a + b;
+            if(parseInt(rez.value) === skupaj ) {
+                rez.value == rez.value + "Pravilno";
+                rez.style.backgroundColor="Green";
+            }
+            else{
+                rez.value != rez.value + "Narobe";
+                rez.style.backgroundColor="Red";
+            }
+        }
+        function refresh() {
+            location.reload();
+        }
+
+    </script>
+    <h1>Učenje sestevanja</h1>
+    <h2>Vpišite rezultat vsote prikazanih stevil</h2>
+    <div>
+        <input type="text" id="st1" disabled size="2"> +
+        <input type="text" id="st2" disabled size="2"> =
+        <input type="text" id="rez" size="15" onchange="preveri()" value="?">
+        <br><br>
+        <button onclick="refresh()">Nove številke</button>
+    </div>
+    <script>
+        document.getElementById("st1").value = Math.trunc(Math.random() * 10);
+        document.getElementById("st2").value = Math.trunc(Math.random() * 10);
+        document.getElementById("rez").select();
+    </script>
+</body>
+</html>
